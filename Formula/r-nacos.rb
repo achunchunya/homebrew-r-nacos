@@ -36,6 +36,43 @@ class RNacos < Formula
     bin.install "rnacos"
   end
 
+  def post_install
+    # Auto-sign the binary to avoid macOS security restrictions
+    system "codesign", "--force", "--deep", "--sign", "-", bin/"rnacos"
+    
+    # Create proper directories
+    (var/"r-nacos/data").mkpath
+    (var/"log").mkpath
+    
+    # Copy any existing data from default location to our managed location
+    default_data_dir = Pathname.new(Dir.home) / ".local/share/r-nacos/nacos_db"
+    managed_data_dir = var/"r-nacos/data"
+    
+    if default_data_dir.exist? && !managed_data_dir.children.any?
+      ohai "Migrating existing r-nacos data to managed directory..."
+      system "cp", "-R", "#{default_data_dir}/.", "#{managed_data_dir}/"
+    end
+    
+    ohai "r-nacos installation completed!"
+    ohai "To start the service: brew services start r-nacos"
+    ohai "Service logs will be available at: #{var}/log/r-nacos.log"
+  end
+
+  service do
+    run [opt_bin/"rnacos"]
+    keep_alive true
+    working_dir var/"r-nacos"
+    log_path var/"log/r-nacos.log"
+    error_log_path var/"log/r-nacos.log"
+    environment_variables({
+      "RNACOS_HTTP_PORT" => "8848",
+      "RNACOS_GRPC_PORT" => "9848",
+      "RNACOS_HTTP_CONSOLE_PORT" => "10848",
+      "RNACOS_DATA_DIR" => var/"r-nacos/data",
+      "RUST_LOG" => "info"
+    })
+  end
+  
   test do
     # `test do` will create, run in and delete a temporary directory.
     #
