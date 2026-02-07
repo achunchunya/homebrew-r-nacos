@@ -4,8 +4,8 @@
 class RNacos < Formula
   desc "r-nacos"
   homepage "https://github.com/r-nacos/r-nacos"
-  url "https://github.com/nacos-group/r-nacos/releases/download/v0.7.2/rnacos-x86_64-apple-darwin-v0.7.2.tar.gz"
-  version "v0.7.2"
+  url "https://github.com/nacos-group/r-nacos/releases/download/v0.8.0/rnacos-x86_64-apple-darwin-v0.8.0.tar.gz"
+  version "v0.8.0"
   #sha256 "20d215565fefadd2369508e50972aed68d1b7f1b1cc6722d338c6187c830e0e4"
   license "Apache-2.0 license"
 
@@ -14,16 +14,16 @@ class RNacos < Formula
   on_macos do
     if Hardware::CPU.arm?
       #sha256 "6153293768db8105b65297871636a8e8550d13be76877babe1202efd39cd5789"
-      url "https://github.com/nacos-group/r-nacos/releases/download/v0.7.2/rnacos-aarch64-apple-darwin-v0.7.2.tar.gz"
+      url "https://github.com/nacos-group/r-nacos/releases/download/v0.8.0/rnacos-aarch64-apple-darwin-v0.8.0.tar.gz"
     end
   end
 
   on_linux do
     #sha256 "ba9ef6504b1a4fd3786d1a56d2a175762b6b5546861e9fdc984b58091379bef2"
-    url "https://github.com/nacos-group/r-nacos/releases/download/v0.7.2/rnacos-x86_64-unknown-linux-musl-v0.7.2.tar.gz"
+    url "https://github.com/nacos-group/r-nacos/releases/download/v0.8.0/rnacos-x86_64-unknown-linux-musl-v0.8.0.tar.gz"
     if Hardware::CPU.arm?
       #sha256 "2186605c6b0b995ebf037f59c3148d250f680bf21352e009aa095a1194da0cdb"
-      url "https://github.com/nacos-group/r-nacos/releases/download/v0.7.2/rnacos-aarch64-unknown-linux-musl-v0.7.2.tar.gz"
+      url "https://github.com/nacos-group/r-nacos/releases/download/v0.8.0/rnacos-aarch64-unknown-linux-musl-v0.8.0.tar.gz"
     end
   end
 
