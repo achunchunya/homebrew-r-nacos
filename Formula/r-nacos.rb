@@ -71,6 +71,6 @@ class RNacos < Formula
   
   test do
     system "#{bin}/rnacos", "--help"
-    assert_match "r-nacos", shell_output("#{bin}/rnacos --version 2>&1", 0)
+    assert_match "rnacos", shell_output("#{bin}/rnacos --version 2>&1", 0)
   end
 end
