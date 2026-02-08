@@ -56,6 +56,7 @@ class RNacosLatest < Formula
     working_dir var/"r-nacos"
     log_path var/"log/r-nacos.log"
     error_log_path var/"log/r-nacos-error.log"
+    run_at_load true
     environment_variables({
       "RNACOS_HTTP_PORT" => "8848",
       "RNACOS_GRPC_PORT" => "9848",
